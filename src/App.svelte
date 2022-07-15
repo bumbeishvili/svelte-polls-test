@@ -31,7 +31,7 @@
 <main>
  <a
   rel="ar"
-  href="https://apple.com/105/media/us/macbook-air-m2/2022/58a79d66-620c-4d70-8679-8db4c76ff675/ar/macbook_air_m2_chip_silver_ios15.usdz"
+  href="/macbook.usdz"
   data-analytics-title="view silver macbook air m2 in ar"
   data-analytics-click="prop3:view silver macbook air m2 in ar"
   aria-label="View Silver MacBook Air M2 in augmented reality"
