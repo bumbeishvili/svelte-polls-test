@@ -1,4 +1,5 @@
 <script>
+ import {tweened} from "svelte/motion";
  import {createEventDispatcher} from "svelte";
  import Card from "../shared/Card.svelte";
  import Button from "../shared/Button.svelte";
@@ -9,8 +10,14 @@
 
  // reactive values
  $: totalVotes = poll.votesA + poll.votesB;
- $: percentageA = (poll.votesA / totalVotes) * 100;
- $: percentageB = (poll.votesB / totalVotes) * 100;
+ $: percentageA = (poll.votesA / totalVotes) * 100 || 0;
+ $: percentageB = (poll.votesB / totalVotes) * 100 || 0;
+
+ const tweenedB = tweened(0);
+ const tweenedA = tweened(0);
+
+ $: tweenedA.set(percentageA);
+ $: tweenedB.set(percentageB);
 
  // handling votes
  const handleVote = (option, id) => {
@@ -44,7 +51,7 @@
     handleVote("a", poll.id);
    }}
   >
-   <div class="percent percent-a" style={`width:${percentageA}%`} />
+   <div class="percent percent-a" style={`width:${$tweenedA}%`} />
    <span>{poll.answerA} ({poll.votesA})</span>
   </div>
   <div
@@ -53,7 +60,7 @@
     handleVote("b", poll.id);
    }}
   >
-   <div class="percent percent-b" style={`width:${percentageB}%`} />
+   <div class="percent percent-b" style={`width:${$tweenedB}%`} />
    <span>{poll.answerB} ({poll.votesB})</span>
   </div>
 
